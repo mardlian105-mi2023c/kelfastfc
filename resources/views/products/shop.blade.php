@@ -110,7 +110,7 @@
                 <p>{{ $product->description }}</p>
                 <p class="text-lg font-bold">Rp{{ $product->price }}</p>
                 
-                <a href="{{ route('products.show', $product->id) }}" class="bg-green-500 items-center text-white px-4 py-2 rounded inline-block">Beli Sekarang</a>
+                <a href="https://wa.me/6285791635708" class="bg-green-500 items-center text-white px-4 py-2 rounded inline-block">Beli Sekarang</a>
             </div>
         @endforeach
     </div>

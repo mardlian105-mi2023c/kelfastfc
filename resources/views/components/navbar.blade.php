@@ -2,14 +2,12 @@
   <div class="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
     <div class="flex h-16 items-center justify-between">
       
-      <!-- Logo -->
       <div class="pt-5 md:flex max-sm:absolute max-sm:left-1/2 transform max-sm:-translate-x-1/2 md:items-center md:gap-12">
         <a className="block text-white" href="/#">
           <img src="{{ asset('storage/images/logo.png') }}" alt="Logo" class="h-24 w-32">
         </a>
       </div>
 
-      <!-- Navigation Menu for Desktop -->
       <div class="hidden md:block">
         <nav aria-label="Global">
           <ul class="flex items-center gap-6 text-sm">
@@ -26,16 +24,15 @@
               <a class="text-white transition hover:text-yellow-400" href="{{ route('shop') }}"> Store </a>
             </li>
             <li>
-              <a class="text-white transition hover:text-yellow-400" href="{{ route('dashboard') }}"> Projects </a>
-            </li>
-            <li>
               <a class="text-white transition hover:text-yellow-400" href="/blog"> Blog </a>
+            </li>
+             <li>
+              <a class="text-white transition hover:text-yellow-400" href="{{ route('dashboard') }}"> Login </a>
             </li>
           </ul>
         </nav>
       </div>
 
-      <!-- Action Buttons and Hamburger Menu -->
       <div class="flex items-center gap-4">
         <div class="sm:flex sm:gap-4">
               <a
@@ -64,7 +61,6 @@
             </div>
         </div>
 
-        <!-- Hamburger Icon for Mobile -->
         <div class="block md:hidden">
           <button class="rounded bg-gray-100 p-2 text-gray-600 transition hover:text-gray-600/75" id="hamburger-button">
             <svg
@@ -82,26 +78,25 @@
       </div>
     </div>
 
-    <!-- Mobile Navigation Menu (Initially Hidden) -->
     <nav aria-label="Global" class="hidden md:hidden" id="mobile-menu">
       <ul class="flex flex-col items-center gap-6 text-sm mt-4">
           <li>
               <a class="text-white transition hover:text-yellow-400" href="/about"> About </a>
-            </li>
-            <li>
+          </li>
+          <li>
               <a class="text-white transition hover:text-yellow-400" href="/squad"> Squad </a>
-            </li>
-            <li>
+          </li>
+          <li>
               <a class="text-white transition hover:text-yellow-400" href="/videos"> Video </a>
-            </li>
-            <li>
+          </li>
+          <li>
               <a class="text-white transition hover:text-yellow-400" href="{{ route('shop') }}"> Store </a>
-            </li>
-            <li>
-              <a class="text-white transition hover:text-yellow-400" href="{{ route('dashboard') }}"> Projects </a>
-            </li>
-            <li>
+          </li>
+          <li>
               <a class="text-white transition hover:text-yellow-400" href="/blog"> Blog </a>
+          </li>
+          <li>
+              <a class="text-white transition hover:text-yellow-400" href="{{ route('dashboard') }}"> Login </a>
           </li>
       </ul>
     </nav>

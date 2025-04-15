@@ -38,15 +38,6 @@ Route::resource('admin_home', HomeController::class)->parameters([
 ]);
 Route::get('/admin_home.index', [HomeController::class, 'index'])->name('admin_home.index');
 Route::get('/admin_home.show/{id}', [HomeController::class, 'show'])->name('admin_home.show');
-// Route::get('/admin_home', [HomeController::class, 'index'])->name('admin_home.index');
-// Route::get('/admin_home/create', [HomeController::class, 'create'])->name('admin_home.create');
-// Route::post('/admin_home', [HomeController::class, 'store'])->name('admin_home.store');
-// Route::get('/admin_home/{post}', [HomeController::class, 'show'])->name('admin_home.show');
-// Route::get('/admin_home/{post}/edit', [HomeController::class, 'edit'])->name('admin_home.edit');
-// Route::put('/admin_home/{post}', [HomeController::class, 'update'])->name('admin_home.update');
-// Route::delete('/admin_home/{post}', [HomeController::class, 'destroy'])->name('admin_home.destroy');
-
-
 
 Route::get('/dashboard', function () {
     return view('dashboard');

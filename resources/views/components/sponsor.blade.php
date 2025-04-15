@@ -6,9 +6,7 @@
             </h2>
 
             <p class="mt-4 text-gray-500 sm:text-xl">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione
-              dolores laborum labore provident impedit esse recusandae facere
-              libero harum sequi.
+              "ALL OFFICIAL PARTNERS x KELFAST FC – Lebih dari Sekadar Kerja Sama, Ini Tentang Kebanggaan!"
             </p>
         </div>
 
