@@ -252,7 +252,7 @@
           </div>
 
           <p class="mt-12 text-center text-sm text-white lg:text-right">
-            Kelfast &copy; 2024. All rights reserved.
+            Kelfast &copy; 2025. All rights reserved by mardlian.
           </p>
         </div>
 </footer>
