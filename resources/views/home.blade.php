@@ -62,15 +62,17 @@
         <h1 class="mx-auto max-w-screen-xl pt-3 text-3xl font-bold mb-4">News</h1>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         @foreach ($posts as $post)
-            <div class="bg-white rounded-lg shadow-md p-6">
-                <h2 class="text-2xl font-semibold mb-2">{{ $post->title }}</h2>
-                <p class="text-gray-600">{{ Str::limit($post->description, 100) }}</p>
+            <div class="bg-white p-4 rounded shadow">
+                <h2 class="text-2xl font-bold">
+                    <a href="{{ route('posts.show', $post) }}">{{ $post->title }}</a>
+                </h2>
+                <p class="text-gray-700 text-justify mt-2">{{ Str::limit($post->content, 150) }}</p>
                 @if ($post->image)
-                    <img src="{{ asset('images/' . $post->image) }}" alt="{{ $post->title }}" class="w-full h-56 object-cover mt-4 rounded">
+                    <img src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->title }}" class="w-full h-56 object-cover mt-4 rounded-lg">
                 @endif
-                <a href="{{ route('admin_home.show', $post->id) }}" class="block mt-4 text-blue-500 hover:underline">Read More</a>
+                <a href="{{ route('posts.show', $post) }}" class="text-blue-500 mt-2 inline-block">Read More</a>
             </div>
-        @endforeach
+            @endforeach
         </div>
     </div>
 <x-sponsor></x-sponsor>

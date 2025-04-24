@@ -1,322 +1,66 @@
 <x-layout>
-<header class="pt-16">
-        <div class="relative bg-cover bg-center h-[400px] max-sm:h-[150px] text-white" style="background-image: url('{{ asset('storage/images/juara2.jpg') }}');" >
-          <div class="absolute inset-0 bg-opacity-50 bg-blue-dark"></div>
-          <div class="relative container mx-auto flex flex-col items-center justify-center h-full">
-            <div class="text-center">
-              <h1 class="max-sm:text-2xl text-5xl font-bold">SQUAD</h1>
-              <a href="/#" class="max-sm:text-sm mt-4 text-lg">
-                HOME / SQUAD
-              </a>
+    <div class="container mx-auto px-4 py-8">
+        <h1 class="text-3xl font-bold text-gray-800 mb-8 text-center">Our Squad</h1>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            @foreach($players as $player)
+            <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
+                <!-- Player Image -->
+                <div class="h-48 bg-gray-200 flex items-center justify-center">
+                    @if($player->image)
+                        <img class="h-full w-full object-cover" src="{{ asset('storage/'.$player->image) }}" alt="{{ $player->name }}">
+                    @else
+                        <i class="fas fa-user text-gray-400 text-6xl"></i>
+                    @endif
+                </div>
+                
+                <!-- Player Info -->
+                <div class="p-6">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-800">{{ $player->name }}</h3>
+                            <span class="inline-block mt-1 px-2 py-1 text-xs font-semibold rounded-full bg-blue-100 text-blue-800">
+                                #{{ $player->number }}
+                            </span>
+                        </div>
+                        <span class="px-3 py-1 text-sm font-semibold rounded-full bg-green-100 text-green-800">
+                            {{ $player->position->name }}
+                        </span>
+                    </div>
+                    
+                    <!-- Stats -->
+                    <div class="mt-4 grid grid-cols-2 gap-2 text-sm">
+                        <div class="bg-gray-50 p-2 rounded">
+                            <div class="font-medium text-gray-500">Goals</div>
+                            <div class="text-lg font-bold text-blue-600">{{ $player->goal }}</div>
+                        </div>
+                        <div class="bg-gray-50 p-2 rounded">
+                            <div class="font-medium text-gray-500">Matches</div>
+                            <div class="text-lg font-bold text-blue-600">{{ $player->match }}</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Performance -->
+                    <div class="mt-4">
+                        <div class="flex justify-between text-sm text-gray-600 mb-1">
+                            <span>Performance</span>
+                            <span>{{ $player->match > 0 ? round(($player->goal/$player->match)*100, 1) : 0 }}%</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2">
+                            <div class="bg-blue-600 h-2 rounded-full" 
+                                 style="width: {{ $player->match > 0 ? min(100, round(($player->goal/$player->match)*100, 1)) : 0 }}%"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
+            @endforeach
         </div>
-</header>
-      <section>
-        <div class="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
-          <div class="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:items-stretch">
-            <div class="grid place-content-center rounded bg-gray-100 p-6 sm:p-8">
-              <div class="mx-auto max-w-md text-center lg:text-left">
-                <header>
-                  <h2 class="text-xl font-bold text-gray-900 sm:text-3xl">
-                    Goalkeeper
-                  </h2>
-
-                  <p class="mt-4 text-gray-500">
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                    Quas rerum quam amet provident nulla error!
-                  </p>
-                </header>
-
-                <a class="mt-8 inline-block rounded border border-gray-900 bg-gray-900 px-12 py-3 text-sm font-medium text-white transition hover:shadow focus:outline-none focus:ring">
-                  View All
-                </a>
-              </div>
-            </div>
-
-            <div class="lg:col-span-2 lg:py-8">
-              <ul class="grid grid-cols-2 gap-4">
-                <li>
-                  <a class="group relative block bg-black">
-                    <img
-                      src="{{ asset('storage/images/logo.png') }}"
-                      alt="..."
-                      class="absolute inset-0 h-full w-full object-cover opacity-75 transition-opacity group-hover:opacity-50"
-                    />
-
-                    <div class="relative p-4 sm:p-6 lg:p-8">
-                      <p class="text-sm font-medium uppercase tracking-widest text-pink-500">
-                        Goalkeeper
-                      </p>
-
-                      <div class="mt-32 sm:mt-48 lg:mt-64">
-                        <div class="translate-y-8 transform opacity-0 transition-all group-hover:translate-y-0 group-hover:opacity-100">
-                          <p class="text-xl font-bold text-white sm:text-2xl">
-                            Player name
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </a>
-                </li>
-
-                <li>
-                  <a class="group relative block bg-black">
-                    <img
-                      src="{{ asset('storage/images/logo.png') }}"
-                      alt="..."
-                      class="absolute inset-0 h-full w-full object-cover opacity-75 transition-opacity group-hover:opacity-50"
-                    />
-
-                    <div class="relative p-4 sm:p-6 lg:p-8">
-                      <p class="text-sm font-medium uppercase tracking-widest text-pink-500">
-                        Goalkeeper
-                      </p>
-
-                      <div class="mt-32 sm:mt-48 lg:mt-64">
-                        <div class="translate-y-8 transform opacity-0 transition-all group-hover:translate-y-0 group-hover:opacity-100">
-                          <p class="text-xl font-bold text-white sm:text-2xl">
-                            Player name
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
+        
+        <!-- Pagination -->
+        @if($players->hasPages())
+        <div class="mt-8">
+            {{ $players->links() }}
         </div>
-      </section>
-      <section>
-        <div class="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
-          <div class="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:items-stretch">
-            <div class="grid place-content-center rounded bg-gray-100 p-6 sm:p-8">
-              <div class="mx-auto max-w-md text-center lg:text-left">
-                <header>
-                  <h2 class="text-xl font-bold text-gray-900 sm:text-3xl">
-                    Anchor
-                  </h2>
-
-                  <p class="mt-4 text-gray-500">
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                    Quas rerum quam amet provident nulla error!
-                  </p>
-                </header>
-
-                <a
-                  href=""
-                  class="mt-8 inline-block rounded border border-gray-900 bg-gray-900 px-12 py-3 text-sm font-medium text-white transition hover:shadow focus:outline-none focus:ring"
-                >
-                  View All
-                </a>
-              </div>
-            </div>
-
-            <div class="lg:col-span-2 lg:py-8">
-              <ul class="grid grid-cols-2 gap-4">
-                <li>
-                  <a class="group relative block bg-black">
-                    <img
-                      src="{{ asset('storage/images/logo.png') }}"
-                      alt="..."
-                      class="absolute inset-0 h-full w-full object-cover opacity-75 transition-opacity group-hover:opacity-50"
-                    />
-
-                    <div class="relative p-4 sm:p-6 lg:p-8">
-                      <p class="text-sm font-medium uppercase tracking-widest text-pink-500">
-                        Anchor
-                      </p>
-
-                      <div class="mt-32 sm:mt-48 lg:mt-64">
-                        <div class="translate-y-8 transform opacity-0 transition-all group-hover:translate-y-0 group-hover:opacity-100">
-                          <p class="text-xl font-bold text-white sm:text-2xl">
-                            Player name
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </a>
-                </li>
-
-                <li>
-                  <a class="group relative block bg-black">
-                    <img
-                      src="{{ asset('storage/images/logo.png') }}"
-                      alt="..."
-                      class="absolute inset-0 h-full w-full object-cover opacity-75 transition-opacity group-hover:opacity-50"
-                    />
-
-                    <div class="relative p-4 sm:p-6 lg:p-8">
-                      <p class="text-sm font-medium uppercase tracking-widest text-pink-500">
-                        Anchor
-                      </p>
-
-                      <div class="mt-32 sm:mt-48 lg:mt-64">
-                        <div class="translate-y-8 transform opacity-0 transition-all group-hover:translate-y-0 group-hover:opacity-100">
-                          <p class="text-xl font-bold text-white sm:text-2xl">
-                            Player name
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section>
-        <div class="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
-          <div class="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:items-stretch">
-            <div class="grid place-content-center rounded bg-gray-100 p-6 sm:p-8">
-              <div class="mx-auto max-w-md text-center lg:text-left">
-                <header>
-                  <h2 class="text-xl font-bold text-gray-900 sm:text-3xl">
-                    Flank
-                  </h2>
-
-                  <p class="mt-4 text-gray-500">
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                    Quas rerum quam amet provident nulla error!
-                  </p>
-                </header>
-
-                <a class="mt-8 inline-block rounded border border-gray-900 bg-gray-900 px-12 py-3 text-sm font-medium text-white transition hover:shadow focus:outline-none focus:ring">
-                  View All
-                </a>
-              </div>
-            </div>
-
-            <div class="lg:col-span-2 lg:py-8">
-              <ul class="grid grid-cols-2 gap-4">
-                <li>
-                  <a class="group relative block bg-black">
-                    <img
-                      src="{{ asset('storage/images/logo.png') }}"
-                      alt="..."
-                      class="absolute inset-0 h-full w-full object-cover opacity-75 transition-opacity group-hover:opacity-50"
-                    />
-
-                    <div class="relative p-4 sm:p-6 lg:p-8">
-                      <p class="text-sm font-medium uppercase tracking-widest text-pink-500">
-                        Flank
-                      </p>
-
-                      <div class="mt-32 sm:mt-48 lg:mt-64">
-                        <div class="translate-y-8 transform opacity-0 transition-all group-hover:translate-y-0 group-hover:opacity-100">
-                          <p class="text-xl font-bold text-white sm:text-2xl">
-                            Player name
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </a>
-                </li>
-
-                <li>
-                  <a class="group relative block bg-black">
-                    <img
-                      src="{{ asset('storage/images/logo.png') }}"
-                      alt="..."
-                      class="absolute inset-0 h-full w-full object-cover opacity-75 transition-opacity group-hover:opacity-50"
-                    />
-
-                    <div class="relative p-4 sm:p-6 lg:p-8">
-                      <p class="text-sm font-medium uppercase tracking-widest text-pink-500">
-                        Flank
-                      </p>
-
-                      <div class="mt-32 sm:mt-48 lg:mt-64">
-                        <div class="translate-y-8 transform opacity-0 transition-all group-hover:translate-y-0 group-hover:opacity-100">
-                          <p class="text-xl font-bold text-white sm:text-2xl">
-                            Player name
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section>
-        <div class="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
-          <div class="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:items-stretch">
-            <div class="grid place-content-center rounded bg-gray-100 p-6 sm:p-8">
-              <div class="mx-auto max-w-md text-center lg:text-left">
-                <header>
-                  <h2 class="text-xl font-bold text-gray-900 sm:text-3xl">
-                    Pivot
-                  </h2>
-
-                  <p class="mt-4 text-gray-500">
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                    Quas rerum quam amet provident nulla error!
-                  </p>
-                </header>
-
-                <a class="mt-8 inline-block rounded border border-gray-900 bg-gray-900 px-12 py-3 text-sm font-medium text-white transition hover:shadow focus:outline-none focus:ring">
-                  View All
-                </a>
-              </div>
-            </div>
-
-            <div class="lg:col-span-2 lg:py-8">
-              <ul class="grid grid-cols-2 gap-4">
-                <li>
-                  <a class="group relative block bg-black">
-                    <img
-                      src="{{ asset('storage/images/logo.png') }}"
-                      alt="..."
-                      class="absolute inset-0 h-full w-full object-cover opacity-75 transition-opacity group-hover:opacity-50"
-                    />
-
-                    <div class="relative p-4 sm:p-6 lg:p-8">
-                      <p class="text-sm font-medium uppercase tracking-widest text-pink-500">
-                        Pivot
-                      </p>
-
-                      <div class="mt-32 sm:mt-48 lg:mt-64">
-                        <div class="translate-y-8 transform opacity-0 transition-all group-hover:translate-y-0 group-hover:opacity-100">
-                          <p class="text-xl font-bold text-white sm:text-2xl">
-                            Player name
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </a>
-                </li>
-
-                <li>
-                  <a class="group relative block bg-black">
-                    <img
-                      src="{{ asset('storage/images/logo.png') }}"
-                      alt="..."
-                      class="absolute inset-0 h-full w-full object-cover opacity-75 transition-opacity group-hover:opacity-50"
-                    />
-
-                    <div class="relative p-4 sm:p-6 lg:p-8">
-                      <p class="text-sm font-medium uppercase tracking-widest text-pink-500">
-                        Pivot
-                      </p>
-
-                      <div class="mt-32 sm:mt-48 lg:mt-64">
-                        <div class="translate-y-8 transform opacity-0 transition-all group-hover:translate-y-0 group-hover:opacity-100">
-                          <p class="text-xl font-bold text-white sm:text-2xl">
-                            Player name
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
+        @endif
+    </div>
 </x-layout>

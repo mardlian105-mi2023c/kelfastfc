@@ -20,10 +20,10 @@
                 <h2 class="text-2xl font-bold">
                     <a href="{{ route('posts.show', $post) }}">{{ $post->title }}</a>
                 </h2>
-                <p class="text-gray-700 text-justify mt-2">{{ Str::limit($post->description, 150) }}</p>
                 @if ($post->image)
-                    <img src="{{ asset('storage/images/' . $post->image) }}" alt="{{ $post->title }}" class="w-full h-56 object-cover mt-4 rounded-lg">
+                    <img src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->title }}" class="w-full h-56 object-cover mt-4 rounded-lg">
                 @endif
+                <p class="text-gray-700 text-justify mt-2">{{ Str::limit($post->content, 150) }}</p>
                 <a href="{{ route('posts.show', $post) }}" class="text-blue-500 mt-2 inline-block">Read More</a>
             </div>
             @endforeach

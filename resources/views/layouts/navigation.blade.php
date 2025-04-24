@@ -13,27 +13,27 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
+                        {{ __('Dashboard Admin') }}
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('admin')" :active="request()->routeIs('admin')">
-                        {{ __('admin') }}
+                        {{ __('News') }}
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('admin_home.index')" :active="request()->routeIs('admin_home.index')">
-                        {{ __('admin home') }}
+                    <x-nav-link :href="route('products.index')" :active="request()->routeIs('products.index')">
+                        {{ __('Post Produk') }}
                     </x-nav-link>
                 </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('products.create')" :active="request()->routeIs('products.create')">
-                        {{ __('products.create') }}
+                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('player.index')" :active="request()->routeIs('player.index')">
+                        {{ __('Player management') }}
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('admin_video.create')" :active="request()->routeIs('admin_video.create')">
-                        {{ __('admin_video.create') }}
+                        {{ __('Post Video') }}
                     </x-nav-link>
                 </div>
             </div>
