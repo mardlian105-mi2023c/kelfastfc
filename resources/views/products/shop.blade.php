@@ -32,18 +32,18 @@
           </div>
         </div>
     </section>
-<div class="container mx-auto px-4">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
-        @foreach ($products as $product)
-            <div class="bg-white p-4 rounded shadow">
-                <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}" class="w-full h-72 object-cover mb-2">
-                <h2 class="text-xl font-semibold">{{ $product->name }}</h2>
-                <p>{{ $product->description }}</p>
-                <p class="text-lg font-bold">Rp{{ $product->price }}</p>
-                
-                <a href="https://wa.me/6285791635708" class="bg-green-500 items-center text-white px-4 py-2 rounded inline-block">Beli Sekarang</a>
-            </div>
-        @endforeach
+    <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+            @foreach ($products as $product)
+                <div class="bg-white p-4 rounded shadow">
+                    <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}" class="w-full h-72 object-cover mb-2">
+                    <h2 class="text-xl font-semibold">{{ $product->name }}</h2>
+                    <p>{{ $product->description }}</p>
+                    <p class="text-lg font-bold">Rp{{ $product->price }}</p>
+                    
+                    <a href="https://wa.me/6285791635708" class="bg-green-500 items-center text-white px-4 py-2 rounded inline-block">Beli Sekarang</a>
+                </div>
+            @endforeach
+        </div>
     </div>
-</div>
 </x-layout>
