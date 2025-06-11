@@ -1,7 +1,7 @@
 <x-app-layout>
-<div class="container mx-auto px-4 py-8">
+<div class="container mx-auto pt-20 px-4 py-8">
     <div class="flex justify-between items-center mb-8">
-        <h1 class="text-3xl font-bold text-gray-800">Player Management</h1>
+        <h1 class="text-3xl font-bold text-gray-800">Halaman Kelola Data Pemain</h1>
         <a href="{{ route('player.create') }}" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md flex items-center">
             <i class="fas fa-plus mr-2"></i> Add Player
         </a>

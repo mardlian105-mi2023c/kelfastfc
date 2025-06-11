@@ -24,7 +24,7 @@ class PostController extends Controller
 
     public function blog()
     {
-        $posts = Post::all();
+        $posts = Post::latest()->paginate(6);
         return view('blog', compact('posts'));
     }
 

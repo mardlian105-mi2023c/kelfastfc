@@ -1,4 +1,4 @@
-<x-layout>
+<x-app-layout>
 <section class="bg-blue-dark pt-15">
         <div class="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 max-sm:py-12 lg:px-8 lg:py-16">
           <div class="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-16">
@@ -88,4 +88,4 @@
           </div>
         </main>
 </section>
-</x-layout>    
+</x-app-layout>

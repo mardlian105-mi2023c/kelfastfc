@@ -1,14 +1,14 @@
-<x-layout>
+<x-app-layout>
     <div class="pt-20 container mx-auto px-4 py-8">
-        <h1 class="text-3xl font-bold text-gray-800 mb-8 text-center">Our Squad</h1>
+        <h1 class="text-3xl font-bold text-gray-800 mb-8 text-center">List Para Pemain</h1>
         
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             @foreach($players as $player)
             <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
                 <!-- Player Image -->
-                <div class="h-48 bg-gray-200 flex items-center justify-center">
+                <div class="h-72 bg-gray-200 flex items-center justify-center">
                     @if($player->image)
-                        <img class="h-full w-full object-cover" src="{{ asset('storage/'.$player->image) }}" alt="{{ $player->name }}">
+                        <img class="h-72 w-full object-cover" src="{{ asset('storage/'.$player->image) }}" alt="{{ $player->name }}">
                     @else
                         <i class="fas fa-user text-gray-400 text-6xl"></i>
                     @endif
@@ -63,4 +63,4 @@
         </div>
         @endif
     </div>
-</x-layout>
+</x-app-layout>

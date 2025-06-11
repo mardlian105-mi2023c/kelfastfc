@@ -1,5 +1,5 @@
 <x-app-layout>
-<div class="container mx-auto px-4 py-8">
+<div class="container pt-20 mx-auto px-4 py-8">
     <div class="bg-white shadow rounded-lg p-6">
         <h2 class="text-2xl font-bold text-gray-800 mb-6">Add New Player</h2>
         

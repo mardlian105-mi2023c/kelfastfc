@@ -15,16 +15,16 @@
                 <a class="text-white transition hover:text-yellow-400" href="/about"> About </a>
               </li>
               <li>
-                <a class="text-white transition hover:text-yellow-400" href="/squad"> Team </a>
+                <a class="text-white transition hover:text-yellow-400" href="{{ route('squad') }}"> Team </a>
               </li>
               <li>
-                <a class="text-white transition hover:text-yellow-400" href="/videos"> Video </a>
+                <a class="text-white transition hover:text-yellow-400" href="{{ route('messages.index') }}"> Forum Diskusi </a>
               </li>
               <li>
                 <a class="text-white transition hover:text-yellow-400" href="{{ route('shop') }}"> Merchandise </a>
               </li>
               <li>
-                <a class="text-white transition hover:text-yellow-400" href="/blog"> Blog </a>
+                <a class="text-white transition hover:text-yellow-400" href="{{ route('blog') }}"> Blog </a>
               </li>
             </ul>
           </nav>
@@ -32,12 +32,9 @@
   
         <div class="flex items-center gap-4">
           @auth
-          <div class="relative" x-data="{ open: false }">
+          <div class="relative" id="user-dropdown-container">
               <!-- User Avatar Button -->
-              <button 
-                  @click="open = !open" 
-                  class="flex items-center gap-2 rounded-full bg-white/90 hover:bg-gray-100 px-3 py-2 text-gray-700 transition-all duration-200 shadow-sm hover:shadow-md border border-gray-200"
-              >
+              <button id="user-dropdown-button" class="flex items-center gap-2 rounded-full bg-white/90 hover:bg-gray-100 px-3 py-2 text-gray-700 transition-all duration-200 shadow-sm hover:shadow-md border border-gray-200">
                   <!-- User Avatar (replace with actual avatar if available) -->
                   <div class="h-8 w-8 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-white font-medium text-sm">
                       {{ strtoupper(substr(Auth::user()->name, 0, 1)) }}
@@ -46,24 +43,13 @@
                   <span class="text-sm font-medium hidden sm:inline-flex">{{ Auth::user()->name }}</span>
                   
                   <!-- Chevron Icon -->
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-500 transition-transform duration-200" 
-                       :class="{ 'transform rotate-180': open }" viewBox="0 0 20 20" fill="currentColor">
+                  <svg id="dropdown-chevron" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-500 transition-transform duration-200" viewBox="0 0 20 20" fill="currentColor">
                       <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
                   </svg>
               </button>
       
               <!-- Dropdown Menu -->
-              <div 
-                  x-show="open" 
-                  @click.away="open = false" 
-                  class="absolute right-0 mt-2 w-56 bg-white rounded-xl shadow-xl py-2 z-50 border border-gray-100 overflow-hidden"
-                  x-transition:enter="transition ease-out duration-200"
-                  x-transition:enter-start="transform opacity-0 scale-95 -translate-y-2"
-                  x-transition:enter-end="transform opacity-100 scale-100 translate-y-0"
-                  x-transition:leave="transition ease-in duration-150"
-                  x-transition:leave-start="transform opacity-100 scale-100 translate-y-0"
-                  x-transition:leave-end="transform opacity-0 scale-95 -translate-y-2"
-              >
+              <div id="user-dropdown-menu" class="absolute right-0 mt-2 w-56 bg-white rounded-xl shadow-xl py-2 z-50 border border-gray-100 overflow-hidden hidden">
                   <!-- User Info -->
                   <div class="px-4 py-3 border-b border-gray-100">
                       <p class="text-sm font-medium text-gray-900">{{ Auth::user()->name }}</p>
@@ -80,7 +66,7 @@
                           Dashboard
                       </a>
                       @endif
-                      <a href="/user/profile" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-indigo-50 hover:text-indigo-700 transition-colors duration-150">
+                      <a href="/profile" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-indigo-50 hover:text-indigo-700 transition-colors duration-150">
                           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
                               <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
                           </svg>
@@ -176,13 +162,49 @@
   
   <script>
       document.addEventListener('DOMContentLoaded', function () {
+          // Mobile menu toggle
           const hamburgerButton = document.getElementById('hamburger-button');
           const mobileMenu = document.getElementById('mobile-menu');
   
           hamburgerButton.addEventListener('click', function () {
               mobileMenu.classList.toggle('hidden');
           });
+          
+          // User dropdown functionality
+          const dropdownButton = document.getElementById('user-dropdown-button');
+          const dropdownMenu = document.getElementById('user-dropdown-menu');
+          const chevronIcon = document.getElementById('dropdown-chevron');
+          
+          if (dropdownButton && dropdownMenu && chevronIcon) {
+              let isDropdownOpen = false;
+              
+              // Toggle dropdown
+              dropdownButton.addEventListener('click', function(e) {
+                  e.stopPropagation();
+                  isDropdownOpen = !isDropdownOpen;
+                  
+                  if (isDropdownOpen) {
+                      dropdownMenu.classList.remove('hidden');
+                      chevronIcon.classList.add('transform', 'rotate-180');
+                  } else {
+                      dropdownMenu.classList.add('hidden');
+                      chevronIcon.classList.remove('transform', 'rotate-180');
+                  }
+              });
+              
+              // Close dropdown when clicking outside
+              document.addEventListener('click', function(e) {
+                  if (isDropdownOpen && !dropdownButton.contains(e.target) && !dropdownMenu.contains(e.target)) {
+                      dropdownMenu.classList.add('hidden');
+                      chevronIcon.classList.remove('transform', 'rotate-180');
+                      isDropdownOpen = false;
+                  }
+              });
+              
+              // Close dropdown when clicking on menu items (optional)
+              dropdownMenu.addEventListener('click', function(e) {
+                  e.stopPropagation();
+              });
+          }
       });
   </script>
-  
-  <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>

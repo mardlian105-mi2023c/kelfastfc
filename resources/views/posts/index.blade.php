@@ -1,21 +1,13 @@
 <x-app-layout>
-    <div class="py-8 px-4 sm:px-6 lg:px-8">
+    <div class="py-8 px-4 pt-20 sm:px-6 lg:px-8">
         <!-- Header with Search and Create Button -->
         <div class="mb-8 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
             <div>
                 <h1 class="text-3xl font-bold text-gray-800">Post Management</h1>
-                <p class="text-gray-500 mt-1">Manage all your blog posts in one place</p>
+                <p class="text-gray-500 mt-1">Halaman Kelola Data Postingan</p>
             </div>
             
             <div class="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
-                <div class="relative flex-grow">
-                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                        <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                        </svg>
-                    </div>
-                    <input type="text" placeholder="Search posts..." class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition duration-150">
-                </div>
                 <a href="{{ route('posts.create') }}" class="inline-flex items-center px-4 py-2 bg-gradient-to-r from-indigo-600 to-indigo-500 border border-transparent rounded-lg shadow-sm text-white font-medium hover:from-indigo-700 hover:to-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-150">
                     <svg class="-ml-1 mr-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>

@@ -1,14 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    @vite('resources/css/app.css')
-    <title>kelfast</title>
-</head>
-<body>
-    <x-navbar></x-navbar>
+<x-app-layout>
     <div id="carouselExample" class="relative overflow-hidden pt-16">
             <div class="carousel-inner relative w-auto h-[600px] max-sm:w-auto max-sm:h-[140px] max-md:h-[300px] lg:h-[500px]" overflow-hidden">
                 <!-- Slide 1 -->
@@ -25,59 +15,58 @@
                 </div>
             </div>
     </div>
-    <section class="bg-blue-dark">
-        <div class="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8 lg:py-16">
-          <div class="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-16">
-            <div class="relative max-md:hidden h-auto overflow-hidden rounded-lg sm:h-80 lg:order-last lg:h-full">
-              <img
-                class="absolute inset-0 h-full w-full object-cover"
-                src="{{ asset('storage/images/logo.png') }}"
-                alt="..."
-              />
-            </div>
-
-            <div class="lg:py-24 max-sm:pt-10 max-sm:text-center">
-              <h1 class="text-2xl font-extrabold sm:text-4xl text-white">
-                ACADEMY FUTSAL TEAM
-              </h1>
-              <h2 class="font-extrabold max-sm:text-center text-3xl sm:text-4xl text-yellow-400 sm:block">
-                KELFAST FC
-              </h2>
-
-              <p class="mt-4 sm:text-2xl max-sm:text-center text-lg text-white">
-                OFFICIAL PARTNERS SAMPEYAN GROUP
-              </p>
-
-              <a
-                href="/About"
-                class="mt-8 inline-block rounded bg-white px-12 py-3 text-sm font-medium text-green-800 transition hover:bg-blue-dark hover:text-white focus:outline-none focus:ring focus:ring-yellow-400"
-              >
-                OUR TEAM
-              </a>
-            </div>
+    <x-banner></x-banner>
+    <div class="container mx-auto px-4 py-8">
+      <!-- Section Header -->
+      <div class="text-center mb-12">
+          <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">Latest News</h1>
+          <div class="w-24 h-1 bg-blue-600 mx-auto"></div>
+      </div>
+  
+      <!-- News Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          @foreach ($posts as $post)
+          <div class="bg-white rounded-xl overflow-hidden shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+              <!-- Image -->
+              @if ($post->image)
+              <div class="h-48 overflow-hidden">
+                  <img src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->title }}" 
+                       class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+              </div>
+              @endif
+  
+              <!-- Content -->
+              <div class="p-6">
+                  <div class="flex justify-between items-center mb-3">
+                      <span class="text-sm text-gray-500">{{ $post->created_at->format('M d, Y') }}</span>
+                      <span class="px-3 py-1 bg-blue-100 text-blue-800 text-xs font-medium rounded-full">News</span>
+                  </div>
+                  
+                  <h2 class="text-xl font-bold text-gray-800 mb-3 hover:text-blue-600 transition-colors">
+                      <a href="{{ route('posts.show', $post) }}">{{ $post->title }}</a>
+                  </h2>
+                  
+                  <p class="text-gray-600 mb-4 line-clamp-3">{{ Str::limit($post->content, 150) }}</p>
+                  
+                  <a href="{{ route('posts.show', $post) }}" 
+                     class="inline-flex items-center text-blue-600 font-medium group">
+                      Read More
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-1 transition-transform group-hover:translate-x-1" 
+                           fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                      </svg>
+                  </a>
+              </div>
           </div>
-        </div>
-    </section>
-    <div class="container mx-auto">
-        <h1 class="mx-auto max-w-screen-xl pt-3 text-3xl font-bold mb-4">News</h1>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        @foreach ($posts as $post)
-            <div class="bg-white p-4 rounded shadow">
-                <h2 class="text-2xl font-bold">
-                    <a href="{{ route('posts.show', $post) }}">{{ $post->title }}</a>
-                </h2>
-                <p class="text-gray-700 text-justify mt-2">{{ Str::limit($post->content, 150) }}</p>
-                @if ($post->image)
-                    <img src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->title }}" class="w-full h-56 object-cover mt-4 rounded-lg">
-                @endif
-                <a href="{{ route('posts.show', $post) }}" class="text-blue-500 mt-2 inline-block">Read More</a>
-            </div>
-            @endforeach
-        </div>
-    </div>
-<x-sponsor></x-sponsor>
-<x-footer></x-footer>
-</body>
+          @endforeach
+      </div>
+      <div class="text-center mt-12">
+          <a href="/blog" class="inline-block px-6 py-3 bg-blue-600 text-white font-medium rounded-lg 
+                           hover:bg-blue-700 transition-colors shadow-md hover:shadow-lg">
+              View All News
+          </a>
+      </div>
+  </div>
 <script>
   let currentSlide = 0;
     const slides = document.querySelectorAll('.carousel-item');
@@ -114,4 +103,4 @@ document.addEventListener('DOMContentLoaded', () => {
     autoSlide();
 });
 </script>
-</html>
+</x-app-layout>
